@@ -1,0 +1,1 @@
+alias "ipconfig" (ipconfig getifaddr en0)
