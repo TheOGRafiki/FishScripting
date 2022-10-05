@@ -39,6 +39,8 @@ set git_dir "/Users/ahmed/work"
     end
     clear
     echo "✓ Completed Successfully ✓"
+    sleep 3
+    clear
 end
 
 function TimedPullFromGithub -d "Pass the program or function that you want to execute as an argument"
