@@ -37,13 +37,14 @@ set git_dir "/Users/ahmed/work"
             echo "Cloned $git_repo."
         end
     end
-    clear
+    clear && printf '\e[3J'
     echo "✓ Completed Successfully ✓"
-    sleep 3
-    clear
+    sleep 2
+    clear && printf '\e[3J'
+    cd ~/work
 end
 
-function TimedPullFromGithub -d "Pass the program or function that you want to execute as an argument"
+function TimedPullFromRedMetersGithub -d "Times the Pull"
   set START_TS (date +%s)
 
   sleep 5
@@ -58,6 +59,6 @@ function TimedPullFromGithub -d "Pass the program or function that you want to e
 end
 
 
-funcsave TimedPullFromGithub
+funcsave TimedPullFromRedMetersGithub
 funcsave PullFromRedMetersGithub
 funcsave SetupRedMetersGithub
