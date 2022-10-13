@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-# All Github Scripting Goes Here
+# * All Github Scripting Goes Here
 function SetupRedMetersGithub -d "Setup Redmeters Dev Environment"
 set git_dir "/Users/ahmed/work"
     # On First Time Maybe Include it in Config.fish file 
@@ -57,8 +57,17 @@ function TimedPullFromRedMetersGithub -d "Times the Pull"
   sleep 3
   clear
 end
+#####################################################################################################################
+# * Helper Functions Goes Here
+function ConnectToNewHardWare -d "Connect o IMX8M Board Via Usb"
+    echo "🟢 Connecting to IMX8M Board 🟢"
+    screen /dev/tty.usbserial-02780035 115200,cs8,-parenb,-cstopb,-hupcl
+    echo "🔴 Connection Terminated 🔴"
+end
 
 
 funcsave TimedPullFromRedMetersGithub
 funcsave PullFromRedMetersGithub
 funcsave SetupRedMetersGithub
+funcsave ConnectToNewHardWare
+

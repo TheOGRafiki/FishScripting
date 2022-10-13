@@ -27,7 +27,7 @@ function OpenVSCodeIn -a dir subdir -d "Get the working directory"
     end
 end
 
-function WhatDoWeHave -a dir -d "Lists All Availible Direcotries in either work or personal mode"
+function ListDirsIn -a dir -d "Lists All Availible Direcotries in either work or personal mode"
     if string match -q "personal" $dir
         echo -n "🟢 Personal Directories: "; set_color green; echo "Found 🟢"; set_color normal;
         set_color red; echo "===================================="; set_color normal;
@@ -48,6 +48,14 @@ function WhatDoWeHave -a dir -d "Lists All Availible Direcotries in either work 
     end
 end
 
-# Edit this to run in a loop instead
-funcsave WhatDoWeHave
+
+function KillYourSelf -d "Kill Your Self"
+    echo "🔴 Killing Your Self 🔴"
+    kill -9 $fish_pid
+end
+
+
+
+funcsave ListDirsIn
 funcsave OpenVSCodeIn
+funcsave KillYourSelf
