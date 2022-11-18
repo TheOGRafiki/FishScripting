@@ -17,8 +17,8 @@ end
 
 function PullFromRedMetersGithub -d "Pulls Latest From All Branches and Repos"
 set git_dir "/Users/ahmed/work"
-    set repo_list "analyzer" "automation" "cinder-common" "device-image" "DeviceFrontEnd" "DeviceBackend" "DevOps" "ember_identity" "PartnerPortal" "PartnerPortalBackend" "Playground" "Cloud"
-    for git_repo in $repo_list
+    set repo_list "DeviceFrontEnd" "DeviceBackend" "Cloud" "OfflineAnalyzer" "RubyControlServerFrontend" "RubyControlServerBackend"
+    for git_repo in $repo_list 
         if test -d "$git_dir/$git_repo"
             cd "$git_dir/$git_repo" &&
             # echo "Pulling from"; set_color red; echo $git_dir/$git_repo; set_color normal &&
