@@ -42,15 +42,18 @@ function ListDirsIn -a dir -d "Lists All Availible Direcotries in either work or
             set_color blue; echo -n "==> "; set_color normal; echo (basename $locatedDir);
         end
         set_color red; echo "===================================="; set_color normal;
-    else
+    els
         echo "🔴 Operation Not Permitted Please Select Either [personal] or [work] 🔴"
         find ~/$dir -type d -maxdepth 1
     end
 end
 
+function nHidden -d "Show Hidden Files in NNN"
+    nnn -H
+end
 
 function KillYourSelf -d "Kill Your Self"
-    echo "🔴 Killing Your Self 🔴"
+    echo "🔴 Killing Myself Self 🔴"
     kill -9 $fish_pid
 end
 

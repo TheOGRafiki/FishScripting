@@ -16,8 +16,14 @@ set git_dir "/Users/ahmed/work"
 end
 
 function PullFromRedMetersGithub -d "Pulls Latest From All Branches and Repos"
+set -g -x GITHUB_ACCESS_TOKEN "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"
 set git_dir "/Users/ahmed/work"
-    set repo_list "DeviceFrontEnd" "DeviceBackend" "Cloud" "OfflineAnalyzer" "RubyControlServerFrontend" "RubyControlServerBackend"
+    set repo_list (curl -u "$GITHUB_ACCESS_TOKEN:" -s https://api.github.com/orgs/RedMeters/repos | jq -r '.[] | .full_name' | sed 's/RedMeters\///g')
+    echo "============================="
+    echo "Pulling from all repos"
+    echo $repo_list
+    echo "============================="
+    sleep 2
     for git_repo in $repo_list 
         if test -d "$git_dir/$git_repo"
             cd "$git_dir/$git_repo" &&
