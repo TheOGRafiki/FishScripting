@@ -16,9 +16,8 @@ set git_dir "/Users/ahmed/work"
 end
 
 function PullFromRedMetersGithub -d "Pulls Latest From All Branches and Repos"
-set -g -x GITHUB_ACCESS_TOKEN "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"
 set git_dir "/Users/ahmed/work"
-    set repo_list (curl -u "$GITHUB_ACCESS_TOKEN:" -s https://api.github.com/orgs/RedMeters/repos | jq -r '.[] | .full_name' | sed 's/RedMeters\///g')
+    set repo_list (curl -u "$GITHUB_TOKEN:" -s https://api.github.com/orgs/RedMeters/repos | jq -r '.[] | .full_name' | sed 's/RedMeters\///g')
 
     for git_repo in $repo_list 
         spin -f "Pulling From $git_repo @\r" "sleep 5"
