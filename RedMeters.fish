@@ -16,21 +16,19 @@ set git_dir "/Users/ahmed/work"
 end
 
 function PullFromRedMetersGithub -d "Pulls Latest From All Branches and Repos"
-set -g -x GITHUB_ACCESS_TOKEN "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"
+set -g -x GITHUB_ACCESS_TOKEN "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"
 set git_dir "/Users/ahmed/work"
     set repo_list (curl -u "$GITHUB_ACCESS_TOKEN:" -s https://api.github.com/orgs/RedMeters/repos | jq -r '.[] | .full_name' | sed 's/RedMeters\///g')
-    echo "============================="
-    echo "Pulling from all repos"
-    echo $repo_list
-    echo "============================="
-    sleep 2
+
     for git_repo in $repo_list 
+        spin -f "Pulling From $git_repo @\r" "sleep 5"
         if test -d "$git_dir/$git_repo"
             cd "$git_dir/$git_repo" &&
             # echo "Pulling from"; set_color red; echo $git_dir/$git_repo; set_color normal &&
-            git pull --all --ff-only &&
-            clear && printf '\e[3J'
-            echo -n "Pulled "; set_color green; echo $git_repo; set_color normal
+            git pull --all --ff-only > /dev/null 2>&1
+            # Clear the line with spin
+            echo -en "\033[2K"
+            echo -n "Pulled "; set_color green; echo "$git_repo ✓"; set_color normal; 
         else
             echo "Did not find the repo $git_repo. Attempting to clone it now..."
             cd $git_dir
@@ -43,10 +41,7 @@ set git_dir "/Users/ahmed/work"
             echo "Cloned $git_repo."
         end
     end
-    clear && printf '\e[3J'
-    echo "✓ Completed Successfully ✓"
     sleep 2
-    clear && printf '\e[3J'
     cd ~/work
 end
 
